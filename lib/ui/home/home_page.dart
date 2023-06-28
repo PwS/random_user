@@ -16,7 +16,8 @@ class HomePage extends StatelessWidget {
       create: (context) => UserBloc(
           hiveService: HiveService(),
           userService: UserService(),
-          connectionBloc: context.read<connection_bloc.ConnectionBloc>()),
+          connectionBloc: context.read<connection_bloc.ConnectionBloc>())
+        ..add(LoadUserEvent()),
       child: const Scaffold(body: _Content()),
     );
   }
