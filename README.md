@@ -15,7 +15,8 @@ https://random-data-api.com/api/
 
 ## Demo
 
-[![Watch the video](Demo)](https://github.com/PwS/random_user/assets/22534596/f59ed208-d0d5-42df-8c36-ec539f20c603)
+[![Watch the video](Demo)](https://github.com/PwS/random_user/assets/22534596/61b6f67e-ee5b-4fa6-a94f-69cf328c32e9)
+
 
 ## Getting Started
 
