@@ -41,7 +41,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
@@ -82,20 +81,7 @@ class MyApp extends StatelessWidget {
                     );
                 }
               },
-              child: BlocBuilder<connection_bloc.ConnectionBloc,
-                  connection_bloc.ConnectionState>(
-                builder: (context, state) {
-                  if (state.currentConnection == ConnectivityResult.none) {
-                    return const Scaffold(
-                      body: Center(
-                        child: Text('No Have Connection'),
-                      ),
-                    );
-                  } else {
-                    return const HomePage();
-                  }
-                },
-              ),
+              child: const HomePage(),
             );
           }),
         ),

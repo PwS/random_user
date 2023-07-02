@@ -56,6 +56,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     try {
       resultValue = await _hiveService.getUser();
+
+      ///Check Connection
+      //If Data is Not Found or Empty and No Connection
+      if (resultValue == User.empty &&
+          connectionBloc.state.currentConnection == ConnectivityResult.none) {
+        return emit(const UserErrorState(errorMessage: 'No Internet'));
+      }
+
       if (resultValue != User.empty) {
         return emit(UserLoadedState(user: resultValue));
       }
@@ -71,15 +79,22 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   FutureOr<void> _onRefreshUserEvent(
       RefreshUserEvent event, Emitter<UserState> emit) async {
     emit(UserLoading());
-
-    if (event.connectionResult == ConnectivityResult.wifi) {
-      await _hiveService.deleteAllUser();
-    }
-
     User resultValue = User.empty;
 
     try {
+      if (event.connectionResult == ConnectivityResult.wifi) {
+        await _hiveService.deleteAllUser();
+      }
+
       resultValue = await _hiveService.getUser();
+
+      ///Check Connection
+      //If Data is Not Found or Empty and No Connection
+      if (resultValue == User.empty &&
+          connectionBloc.state.currentConnection == ConnectivityResult.none) {
+        return emit(const UserErrorState(errorMessage: 'No Internet'));
+      }
+
       if (resultValue != User.empty) {
         return emit(UserLoadedState(user: resultValue));
       }

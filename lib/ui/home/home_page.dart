@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _Content extends StatelessWidget {
-  const _Content({super.key});
+  const _Content();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,24 @@ class _Content extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (state is UserErrorState) {
+          if (state.errorMessage == 'No Internet') {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('No Connection'),
+                  ElevatedButton(
+                      onPressed: () => context.read<UserBloc>().add(
+                          RefreshUserEvent(
+                              connectionResult: context
+                                  .read<connection_bloc.ConnectionBloc>()
+                                  .state
+                                  .currentConnection)),
+                      child: const Text('Refresh'))
+                ],
+              ),
+            );
+          }
           return Column(
             children: [
               Text('Failed Load User Caused By ${state.errorMessage}'),
