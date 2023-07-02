@@ -1,7 +1,7 @@
 # random-user
 
-```bash
 API Used
+```bash 
 https://random-data-api.com/api/
 ```
 
