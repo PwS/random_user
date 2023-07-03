@@ -10,6 +10,7 @@ https://random-data-api.com/api/
 - OnLoadEvent
 <img src="https://github.com/PwS/random_user/blob/master/doc/flow/OnLoad.png" alt="OnLoad"/>
 
+
 - OnRefreshEvent
 <img src="https://github.com/PwS/random_user/blob/master/doc/flow/OnRefresh.png" alt="OnRefresh"/>
 
