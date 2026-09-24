@@ -1,4 +1,4 @@
-# Random User: Offline-First Flutter App with BLoC & Hive
+# RandomUser: Offline-First Flutter App with BLoC & Hive
 
 A Flutter app that fetches a random user from the
 [Random Data API](https://random-data-api.com/) and shows their avatar and username.

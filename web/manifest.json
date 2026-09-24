@@ -1,6 +1,6 @@
 {
-    "name": "Random User",
-    "short_name": "Random User",
+    "name": "RandomUser",
+    "short_name": "RandomUser",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

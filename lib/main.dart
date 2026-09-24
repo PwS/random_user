@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         create: (context) => connection_bloc.ConnectionBloc(
             connectionService: context.read<ConnectionService>()),
         child: MaterialApp(
-          title: 'Random User',
+          title: 'RandomUser',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
