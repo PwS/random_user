@@ -1,11 +1,11 @@
 {
-    "name": "randomuser",
-    "short_name": "randomuser",
+    "name": "Random User",
+    "short_name": "Random User",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Offline-first Flutter app that shows a random user, cached with Hive and refreshed by network connection.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

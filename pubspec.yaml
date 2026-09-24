@@ -1,5 +1,5 @@
 name: randomuser
-description: A new Flutter project.
+description: Offline-first Flutter app that shows a random user, cached with Hive and refreshed by network connection.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
