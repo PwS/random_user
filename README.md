@@ -125,6 +125,7 @@ lib/
 └── utils/
     └── bloc_observer.dart            # Logs all BLoC events, changes and errors
 doc/
+├── architecture/                     # Architecture diagram (+ Mermaid source)
 ├── flow/                             # Flow diagrams (OnLoad, OnRefresh)
 └── demo/                             # Demo video
 ```
@@ -135,17 +136,13 @@ abstract classes make them easy to replace with mocks in tests.
 
 ## Architecture
 
-```mermaid
-flowchart TD
-    UI["UI<br/>HomePage / CustomUserCard"] -->|events| UB[UserBloc]
-    UB -->|states| UI
-    CB[ConnectionBloc] -->|connection changes| UB
-    CB -->|snackbar| APP[MyApp]
-    CS[ConnectionService<br/>connectivity_plus] --> CB
-    UB --> US[UserService]
-    UB --> HS[HiveService]
-    US --> DIO[DioClient + DioInterceptor] --> API[(random-data-api.com)]
-    HS --> HIVE[(Hive box: boxUser)]
+<img src="doc/architecture/architecture.png" alt="Architecture diagram" width="700"/>
+
+The diagram source is [`doc/architecture/architecture.mmd`](doc/architecture/architecture.mmd).
+After editing it, regenerate the image with:
+
+```bash
+npx @mermaid-js/mermaid-cli -i doc/architecture/architecture.mmd -o doc/architecture/architecture.png -s 2 -b white
 ```
 
 **ConnectionBloc** (created in `main.dart`, above `MaterialApp`)
