@@ -67,19 +67,19 @@ class User extends Equatable {
       'id': id,
       'uid': uid,
       'password': password,
-      'firstName': firstName,
-      'lastName': lastName,
+      'first_name': firstName,
+      'last_name': lastName,
       'username': username,
       'email': email,
       'avatar': avatar,
       'gender': gender,
-      'phoneNumber': phoneNumber,
-      'socialInsuranceNumber': socialInsuranceNumber,
-      'dateOfBirth': dateOfBirth,
-      'employment': employment,
-      'address': address,
-      'creditCard': creditCard,
-      'subscription': subscription,
+      'phone_number': phoneNumber,
+      'social_insurance_number': socialInsuranceNumber,
+      'date_of_birth': dateOfBirth,
+      'employment': employment?.toJson(),
+      'address': address?.toJson(),
+      'credit_card': creditCard?.toJson(),
+      'subscription': subscription?.toJson(),
     };
   }
 
@@ -88,23 +88,23 @@ class User extends Equatable {
       id: json['id'],
       uid: json['uid'],
       password: json['password'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
       username: json['username'],
       email: json['email'],
       avatar: json['avatar'],
       gender: json['gender'],
-      phoneNumber: json['phoneNumber'],
-      socialInsuranceNumber: json['socialInsuranceNumber'],
-      dateOfBirth: json['dateOfBirth'],
+      phoneNumber: json['phone_number'],
+      socialInsuranceNumber: json['social_insurance_number'],
+      dateOfBirth: json['date_of_birth'],
       employment: json['employment'] == null
           ? null
           : Employment.fromJson(json['employment']),
       address:
           json['address'] == null ? null : Address.fromJson(json['address']),
-      creditCard: json['creditCard'] == null
+      creditCard: json['credit_card'] == null
           ? null
-          : CreditCard.fromJson(json['creditCard']),
+          : CreditCard.fromJson(json['credit_card']),
       subscription: json['subscription'] == null
           ? null
           : Subscription.fromJson(json['subscription']),

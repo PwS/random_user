@@ -15,7 +15,7 @@ class DioClient {
   ///
   ///onlyAliceInterceptor if false then the record for alice is not registered
   ///
-  ///Default For receiveTimeOut & connectTimeout is 11.67 Minutes or 700 Seconds
+  ///receiveTimeOut & connectTimeout are in minutes, Default is 1 Minute
   DioClient(
       {bool isUnitTest = false,
       Map<String, dynamic>? headers,

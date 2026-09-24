@@ -1,4 +1,5 @@
 import 'dart:async' as lib_async;
+import 'dart:developer';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,10 @@ void main() {
         runApp(const MyApp());
       });
     },
-    (error, stackTrace) async {},
+    (error, stackTrace) {
+      ///Log errors that were not caught anywhere else
+      log('Uncaught error', error: error, stackTrace: stackTrace);
+    },
   );
 }
 

@@ -32,7 +32,6 @@ The video is also in the repo at [`doc/demo/demo-vid.mp4`](doc/demo/demo-vid.mp4
 - [Local database (Hive)](#local-database-hive)
 - [Code generation](#code-generation)
 - [Testing](#testing)
-- [Known issues](#known-issues)
 
 ## Features
 
@@ -286,23 +285,15 @@ dart run build_runner watch --delete-conflicting-outputs
 
 ```bash
 flutter analyze   # static analysis with the flutter_lints rules
-flutter test      # run the tests in test/
+flutter test      # run every test in test/
 ```
 
-Tips for adding tests:
-- Test the BLoCs with [`bloc_test`](https://pub.dev/packages/bloc_test).
-- Mock the services through their abstract `Base…Service` classes, for example with
-  [`mocktail`](https://pub.dev/packages/mocktail).
+| File | What it covers |
+| --- | --- |
+| `test/models/user_test.dart` | `User.fromJson` reads a real API response, and `toJson` → `fromJson` gives back the same user |
+| `test/ui/custom_user_card_test.dart` | `CustomUserCard` shows the username, and falls back to "Unknown" |
+| `test/state_management/user_bloc_test.dart` | `UserBloc`: cached user, "No Internet", Wi-Fi refresh (clears the cache and fetches), mobile refresh (keeps the cache) |
+| `test/helpers/fakes.dart` | In-memory fakes for `HiveService`, `UserService` and `ConnectionService` |
 
-## Known issues
-
-- **`test/widget_test.dart` is the default Flutter counter test.** It doesn't match this app
-  and will fail. Replace it with tests for `HomePage` or the BLoCs.
-- **Several `User` fields are always empty.** `User.fromJson` reads camelCase keys
-  (`firstName`, `phoneNumber`, `dateOfBirth`, `creditCard`, …), but the API returns
-  snake_case (`first_name`, `phone_number`, `date_of_birth`, `credit_card`, …). The fields
-  the UI shows (`username`, `avatar`) are not affected.
-- **Errors from `runZonedGuarded` are ignored** because its error handler in `main.dart` is
-  empty. Consider logging or reporting them.
-- **Comment and code disagree on timeouts.** The comment on `DioClient` says the timeouts
-  are 700 seconds, but the code uses 1 minute.
+The fakes use Dart's `implements`, so the tests need no mocking library and never touch the
+network or the disk. To test a new service, add a fake for it in `test/helpers/fakes.dart`.
