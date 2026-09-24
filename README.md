@@ -138,6 +138,18 @@ abstract classes make them easy to replace with mocks in tests.
 
 <img src="doc/architecture/architecture.png" alt="Architecture diagram" width="700"/>
 
+**How UserBloc uses its two services.** The numbers match the diagram:
+
+1. **HiveService is always used first.** UserBloc reads the cached user. On a Wi-Fi refresh it
+   clears the cache before reading, so the cache is always empty there. If a user is found, it is
+   shown and **UserService is not called at all**.
+2. **UserService is used only if the cache is empty *and* the device is online.** It fetches a new
+   user from the API. If the cache is empty and the device is offline, UserBloc emits
+   "No Internet" instead.
+3. **HiveService again** saves the user from the API, so it is available offline next time.
+
+The step-by-step flows are in [How data flows](#how-data-flows).
+
 The diagram source is [`doc/architecture/architecture.mmd`](doc/architecture/architecture.mmd).
 After editing it, regenerate the image with:
 

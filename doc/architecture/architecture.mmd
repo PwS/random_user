@@ -1,11 +1,11 @@
 flowchart TD
     CS["ConnectionService<br/>(connectivity_plus)"] --> CB["ConnectionBloc"]
     CB -- "shows snackbar" --> APP["MyApp"]
-    CB -- "connection changed" --> UB["UserBloc"]
-    UI["HomePage"] -- "LoadUserEvent / Refresh" --> UB
+    CB -- "connection changed<br/>(RefreshUserEvent)" --> UB["UserBloc"]
+    UI["HomePage"] -- "LoadUserEvent / Refresh button" --> UB
     UB -- "UserState" --> CARD["Loading / Error / CustomUserCard"]
-    UB --> US["UserService"]
-    UB --> HS["HiveService"]
+    UB -- "① always first:<br/>read cached user<br/>(on Wi-Fi refresh: clear cache first)<br/>③ save user fetched from API" --> HS["HiveService"]
+    UB -- "② only if cache is empty<br/>and device is online:<br/>fetch a new user" --> US["UserService"]
     US --> DIO["DioClient + DioInterceptor"]
     DIO --> API[("random-data-api.com")]
     HS --> HIVE[("Hive box: boxUser")]
